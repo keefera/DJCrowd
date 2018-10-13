@@ -19,10 +19,10 @@ def sms_reply():
     artist = artist_song_pair[0]
     title = artist_song_pair[1]
 
-    spotifyController.playSong(USERNAME, artist, title)
+    now_playing = spotifyController.playSong(USERNAME, artist, title)
 
     resp = MessagingResponse()
-    msg = resp.message("Playing Song: \"%s\", \"%s\"." % (artist,title))
+    msg = resp.message(now_playing)
 
     return str(resp)
 
