@@ -11,16 +11,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    auth_url = spotifyController.app_Authorization()
-    return redirect(auth_url)
+    return render_template('index.html')
 
 
 @app.route("/callback")
 def listen():
     args = request.args
     print(args)
-    return ""
-    #return render_template('index.html')
+    #return ""
+    return render_template('index.html')
 
 
 
