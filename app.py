@@ -17,7 +17,10 @@ def index():
 
 @app.route("/callback")
 def listen():
-    return render_template('index.html')
+    args = request.args
+    print(args)
+    return ""
+    #return render_template('index.html')
 
 
 
