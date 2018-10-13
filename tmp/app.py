@@ -3,29 +3,31 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 import spotifyController
 
+DELIMITER = "%%"
+USERNAME = "agentquebeq"
+
 app = Flask(__name__)
 
 
-@app.route("/sms", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def sms_reply():
-    """Respond to incoming calls with a MMS message."""
-    # Start our TwiML response
-    body = request.values.get('Body', None)
+    """Listen for SMS Messages and plays a song based the user's selection"""
+    received_message = request.values.get('Body', None)
 
-    song = body.split("%%")
+    artist_song_pair = received_message.split(DELIMITER)
 
-    artist = song[0]
-    title = song[1]
+    artist = artist_song_pair[0]
+    title = artist_song_pair[1]
 
-    spotifyController.playSong("akeefer6",artist,title)
+    spotifyController.playSong(USERNAME, artist, title)
 
     resp = MessagingResponse()
-
-    # Add a text message
-    msg = resp.message("Selecting Song \"%s\", \"%s\"" % (artist,title))
-
+    msg = resp.message("Playing Song: \"%s\", \"%s\"." % (artist,title))
 
     return str(resp)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True)     #run debug
+
+
+    #old sdk:3.7 (HelloData)

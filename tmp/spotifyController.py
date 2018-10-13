@@ -1,31 +1,42 @@
 import spotipy
 import sys
 import spotipy.util as util
-#import pyrebase
+from spotipy.oauth2 import SpotifyClientCredentials
 
-#Function plays song on spotify - limited to first result of query
-#pass in spotify username, artist name, and track name
+# import pyrebase
+
+# consts
+CLIENT_ID = 'ffbf57e77cdc4d1f98b80bce63e16341'
+CLIENT_SECRET = '1e612801fe654e4b956b07448461ee67'
+REDIRECT_URL = 'http://localhost:8000'
+
+
+# Function plays song on spotify - limited to first result of query
+# pass in spotify username, artist name, and track name
 def playSong(username, artistName, trackName):
-	scope = "streaming app-remote-control user-modify-playback-state user-read-playback-state"
-	token = util.prompt_for_user_token(username, scope, client_id='ffbf57e77cdc4d1f98b80bce63e16341',
-		client_secret='1e612801fe654e4b956b07448461ee67', redirect_uri='http://localhost:8000')
-	sp = spotipy.Spotify(auth = token)
-	results = sp.search(q = 'artist:' + artistName + ' track:' + trackName, type = 'track', limit = 1)
-	if not results['tracks']['items']:
-		print("Error: No results found")
-		exit()
+    scope = "streaming app-remote-control user-modify-playback-state user-read-playback-state"
+    token = util.prompt_for_user_token(username, scope, client_id=CLIENT_ID,
+                                       client_secret=CLIENT_SECRET,
+                                       redirect_uri=REDIRECT_URL)
 
-	trackURI = results['tracks']['items'][0]['uri']
-	devices = sp.devices()
-	if not devices['devices']:
-		print("Error: Spotify must be open on one of your devices!")
-		exit()
-	
-	deviceID = devices['devices'][0]['id']
-	sp.start_playback(device_id = deviceID, uris = [trackURI])
+    sp = spotipy.Spotify(auth=token)
+    results = sp.search(q='artist:' + artistName + ' track:' + trackName, type='track', limit=1)
+
+    if not results['tracks']['items']:
+        print("Error: No results found")
+        exit()
+
+    trackURI = results['tracks']['items'][0]['uri']
+    devices = sp.devices()
+    if not devices['devices']:
+        print("Error: Spotify must be open on one of your devices!")
+        exit()
+
+        deviceID = devices['devices'][0]['id']
+        sp.start_playback(device_id=deviceID, uris=[trackURI])
 
 
-#Initialize Firebase with service account credentials
+# Initialize Firebase with service account credentials
 """
 def initdb():
 	config = {
@@ -39,23 +50,26 @@ def initdb():
 	return firebase.database()
 """
 
+
 def pulldb(db):
-    vote_info = db.child("Votes").get()
+    vote_info=db.child("Votes").get()
     votes = [i.val() for i in vote_info.each()][0]
     return votes
 
+
 def pushdb(db, votes):
-	db.child("Votes").push(votes)
+    db.child("Votes").push(votes)
+
 
 def cleardb(db):
-	db.remove()
+    db.remove()
 
 
 if (__name__ == '__main__'):
-	if (len(sys.argv) != 4):
-		print("Usage: spotifyController.py <username> <artistName> <trackName>")
-		exit()
+    if (len(sys.argv) != 4):
+        print("Usage: spotifyController.py <username> <artistName> <trackName>")
+        exit()
 
-	#db = initdb()
+    # db = initdb()
 
-	playSong(sys.argv[1], sys.argv[2], sys.argv[3])
+    playSong(sys.argv[1], sys.argv[2], sys.argv[3])
