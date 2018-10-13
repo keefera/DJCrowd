@@ -1,6 +1,7 @@
 import spotipy
 import sys
 import spotipy.util as util
+import pyrebase
 
 #Function plays song on spotify - limited to first result of query
 #pass in spotify username, artist name, and track name
@@ -13,7 +14,7 @@ def playSong(username, artistName, trackName):
 	if not results['tracks']['items']:
 		print("Error: No results found")
 		exit()
-		
+
 	trackURI = results['tracks']['items'][0]['uri']
 	devices = sp.devices()
 	if not devices['devices']:
@@ -23,12 +24,36 @@ def playSong(username, artistName, trackName):
 	deviceID = devices['devices'][0]['id']
 	sp.start_playback(device_id = deviceID, uris = [trackURI])
 
-	#start_playback(device_id=None, context_uri=None, uris=None)
+
+#Initialize Firebase with service account credentials
+def initdb():
+	config = {
+  	"apiKey": "AIzaSyAjFT-Kc-sYP8BQw7787SD9fcc5kbPOYOQ",
+  	"authDomain": "dj-crowd.firebaseapp.com",
+  	"databaseURL": "https://dj-crowd.firebaseio.com",
+  	"storageBucket": "dj-crowd.appspot.com",
+  	"serviceAccount": "service_account_cred.json"
+	}
+	firebase = pyrebase.initialize_app(config)
+	return firebase.database()
+
+def pulldb(db):
+    vote_info = db.child("Votes").get()
+    votes = [i.val() for i in vote_info.each()][0]
+    return votes
+
+def pushdb(db, votes):
+	db.child("Votes").push(votes)
+
+def cleardb(db):
+	db.remove()
 
 
 if (__name__ == '__main__'):
 	if (len(sys.argv) != 4):
 		print("Usage: spotifyController.py <username> <artistName> <trackName>")
 		exit()
+
+	db = initdb()
 
 	playSong(sys.argv[1], sys.argv[2], sys.argv[3])
