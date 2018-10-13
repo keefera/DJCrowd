@@ -1,3 +1,5 @@
 .cache-akeefer6
 spotipy-master
 blah.txt
+tmp/__pycache__*
+ngrok.exe
