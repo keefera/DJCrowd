@@ -3,7 +3,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 import spotifyController
 
-DELIMITER = "%%"
+DELIMITER = "::"
 USERNAME = "agentquebeq"
 
 app = Flask(__name__)
@@ -13,16 +13,25 @@ app = Flask(__name__)
 def sms_reply():
     """Listen for SMS Messages and plays a song based the user's selection"""
     received_message = request.values.get('Body', None)
+    incoming_command = received_message.split(DELIMITER)
 
-    artist_song_pair = received_message.split(DELIMITER)
+    command = incoming_command[0]
+    if (len(incoming_command) >= 3):
+        artist = incoming_command[1]
+        title = incoming_command[2]
 
-    artist = artist_song_pair[0]
-    title = artist_song_pair[1]
 
-    now_playing = spotifyController.playSong(USERNAME, artist, title)
+    if (command.lower() == "play"):
+        response_string = spotifyController.playSong(USERNAME, artist, title)
+    elif (command.lower() == "vote"):
+        response_string = spotifyController.vote(USERNAME, artist, title)
+    elif (command.lower() == "list"):
+        response_string = spotifyController.list_tracks(USERNAME)
+    else:
+        response_string = "Invalid Command %s" % command
 
     resp = MessagingResponse()
-    msg = resp.message(now_playing)
+    msg = resp.message(response_string)
 
     return str(resp)
 
