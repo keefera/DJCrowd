@@ -20,7 +20,7 @@ CLIENT_ID = 'ffbf57e77cdc4d1f98b80bce63e16341'
 CLIENT_SECRET = '1e612801fe654e4b956b07448461ee67'
 CLIENT_SIDE_URL = "http://127.0.0.1"
 PORT = 5000
-REDIRECT_URI = "{}:{}/callback/q".format(CLIENT_SIDE_URL, PORT)
+REDIRECT_URI = "{}:{}/callback".format(CLIENT_SIDE_URL, PORT)
 SCOPE = "streaming app-remote-control user-modify-playback-state user-read-playback-state"
 
 def app_Authorization():

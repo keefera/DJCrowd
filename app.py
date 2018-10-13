@@ -4,7 +4,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 import spotifyController
 
 DELIMITER = "::"
-USERNAME = "agentquebeq"
+USERNAME = "akeefer6"
 
 app = Flask(__name__)
 
@@ -15,16 +15,13 @@ def index():
     return redirect(auth_url)
 
 
-@app.route("/callback/q", methods=['GET', 'POST'])
+@app.route("/callback")
 def listen():
-    if request.method == 'POST':
-        sms_reply()
-
     return render_template('index.html')
 
 
 
-
+@app.route("/sms")
 def sms_reply():
     """Listen for SMS Messages and plays a song based the user's selection"""
     received_message = request.values.get('Body', None)
@@ -50,8 +47,10 @@ def sms_reply():
 
     return str(resp)
 
+
+
 if __name__ == "__main__":
-    app.run(debug=True)     #run debug
+    app.run(host='localhost', debug=True)     #run debug
 
 
     #old sdk:3.7 (HelloData)
