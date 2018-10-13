@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, render_template
 from twilio.twiml.messaging_response import MessagingResponse
 
 import spotifyController
@@ -9,7 +9,22 @@ USERNAME = "agentquebeq"
 app = Flask(__name__)
 
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/")
+def index():
+    auth_url = spotifyController.app_Authorization()
+    return redirect(auth_url)
+
+
+@app.route("/callback/q", methods=['GET', 'POST'])
+def listen():
+    if request.method == 'POST':
+        sms_reply()
+
+    return render_template('index.html')
+
+
+
+
 def sms_reply():
     """Listen for SMS Messages and plays a song based the user's selection"""
     received_message = request.values.get('Body', None)

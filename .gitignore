@@ -1,5 +1,7 @@
 .cache*
 spotipy-master
 blah.txt
-tmp/__pycache__*
+__pycache__*
 ngrok.exe
+Page
+*.pyc
