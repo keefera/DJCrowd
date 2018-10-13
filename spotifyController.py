@@ -9,8 +9,9 @@ def openCon():
 	sp = spotipy.Spotify(token)
 	artistName = "Rick Astley"
 	trackName = "Never Gonna Give You Up"
-	results = sp.search(q = 'artist:' + artistName + ' track:' + trackName, type = 'track')
-	print(results)
+	results = sp.search(q = 'artist:' + artistName + ' track:' + trackName, type = 'track', limit = 1)
+	trackURI = results['tracks']['items'][0]['uri']
+	print(trackURI)
 
 
 if (__name__ == '__main__'):
