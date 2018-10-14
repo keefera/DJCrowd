@@ -4,7 +4,6 @@
   <head>
 
     <meta charset="utf-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -13,6 +12,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -21,9 +21,6 @@
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.min.css" rel="stylesheet">
 
-    <!-- DJ Crowd CSS -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
   </head>
 
   <body id="page-top">
@@ -31,12 +28,10 @@
 
     <!-- Header -->
     <header class="masthead d-flex">
-      <div class="main">
-        <img src="Bare_Logo.png" width="123" height="95" class="center">
+      <div class="container text-center my-auto">
         <h2 class="mb-1">Text To Vote</h2>
-        <h4 class="mb-1">vote::{Artist Name}::{Song Title}</h4>
+        <h4 class="mb-1">Song Name::Artist Name</h4>
         <h2 class="mb-1">630-812-7643</h2>
-        <a href="/login" id="button">Play Next Song</a>
       </div>
       <div class="overlay"></div>
       <div class="container text-center">
@@ -52,48 +47,14 @@
                 </tr>
               </thead>
               <tbody>
+                {% for row in table_data %}
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Test</td>
-                  <td>Test</td>
-                  <td>0</td>
-                </tr>
+                   <th scope="row">{{table_data.index(row) + 1}} 
+                  <td>{{row[0]}}</td>
+                  <td>{{row[1]}}</td>
+                  <td>{{row[2]}}</td>
                 <tr>
-                  <th scope="row">2</th>
-                  <td>Test</td>
-                  <td>Test</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Test</td>
-                  <td>Test</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Test</td>
-                  <td>Test</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Test</td>
-                  <td>Test</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">6</th>
-                  <td>Test</td>
-                  <td>Test</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">7</th>
-                  <td>Test</td>
-                  <td>Test</td>
-                  <td>0</td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
