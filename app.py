@@ -1,11 +1,25 @@
 from flask import Flask, request, redirect, render_template
 from twilio.twiml.messaging_response import MessagingResponse
+from threading import Timer
+import requests
 
 import spotifyController
 
 DELIMITER = "::"
 
+REFRESHCODE = "BLAH"
+ACCESSCODE = ""
+
 app = Flask(__name__)
+
+def getNewToken():
+    r = requests.post(url = "http://localhost:8888/refresh_token", data = {'refresh_token' : REFRESHCODE})
+    print(r)
+    t = Timer(10, getNewToken)
+    t.start()
+
+#t = Timer(5, getNewToken)
+#t.start()
 
 
 @app.route("/", methods = ['GET', 'POST'])
@@ -17,9 +31,10 @@ def index():
 def listen():
     #r = requests.put('http://httpbin.org/put', data = {'key':'value'})
     myRequest = request.get_json()
-    accessCode = myRequest['token']
+    ACCESSCODE = myRequest['token']
+    REFRESHCODE = myRequest['refresh']
     
-    print(spotifyController.playSong(accessCode, 'The Killers', 'Smile Like You Mean It'))
+    print(spotifyController.playSong(ACCESSCODE, 'Rick Astley', 'Never Gonna Give You Up'))
 
     return render_template('index.html')
 
@@ -54,7 +69,7 @@ def sms_reply():
 
 
 if __name__ == "__main__":
-    app.run(host='localhost', debug=True)     #run debug
+    app.run(host='localhost', debug=False)     #run debug
 
 
     #old sdk:3.7 (HelloData)
