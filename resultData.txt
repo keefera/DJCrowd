@@ -1,0 +1,24 @@
+{'device': {'id': '9ff820eb06f3128caf39aab7ef404c11667fa58c', 'is_active': True, 'is_private_session': False, 'is_restricte
+d': False, 'name': 'ADAMSLAPTOP', 'type': 'Computer', 'volume_percent': 100}, 'shuffle_state': False, 'repeat_state': 'off'
+, 'timestamp': 1539488536942, 'context': None, 'progress_ms': 11370, 'item': {'album': {'album_type': 'single', 'artists':
+[{'external_urls': {'spotify': 'https://open.spotify.com/artist/7gKu7l0lNdzYGsdxinKkJo'}, 'href': 'https://api.spotify.com/
+v1/artists/7gKu7l0lNdzYGsdxinKkJo', 'id': '7gKu7l0lNdzYGsdxinKkJo', 'name': 'Let It Go', 'type': 'artist', 'uri': 'spotify:
+artist:7gKu7l0lNdzYGsdxinKkJo'}], 'available_markets': ['AD', 'AR', 'AT', 'AU', 'BE', 'BG', 'BO', 'BR', 'CA', 'CH', 'CL', '
+CO', 'CR', 'CY', 'CZ', 'DE', 'DK', 'DO', 'EC', 'EE', 'ES', 'FI', 'FR', 'GB', 'GR', 'GT', 'HK', 'HN', 'HU', 'ID', 'IE', 'IL'
+, 'IS', 'IT', 'JP', 'LI', 'LT', 'LU', 'LV', 'MC', 'MT', 'MX', 'MY', 'NI', 'NL', 'NO', 'NZ', 'PA', 'PE', 'PH', 'PL', 'PT', '
+PY', 'RO', 'SE', 'SG', 'SK', 'SV', 'TH', 'TR', 'TW', 'US', 'UY', 'VN', 'ZA'], 'external_urls': {'spotify': 'https://open.sp
+otify.com/album/4lwRmEi0h5In6VRjyYswZp'}, 'href': 'https://api.spotify.com/v1/albums/4lwRmEi0h5In6VRjyYswZp', 'id': '4lwRmE
+i0h5In6VRjyYswZp', 'images': [{'height': 600, 'url': 'https://i.scdn.co/image/310fb535e6138a35669f41bf935936769ca10467', 'w
+idth': 600}, {'height': 300, 'url': 'https://i.scdn.co/image/bdbe6225c45215e0c5978fa656477901e81c5d9f', 'width': 300}, {'he
+ight': 64, 'url': 'https://i.scdn.co/image/87c06a4888b80e623be4487b926bf76c7cfc84e5', 'width': 64}], 'name': 'Let It Go - T
+ribute to Demi Lovato', 'release_date': '2013-11-08', 'release_date_precision': 'day', 'total_tracks': 2, 'type': 'album',
+'uri': 'spotify:album:4lwRmEi0h5In6VRjyYswZp'}, 'artists': [{'external_urls': {'spotify': 'https://open.spotify.com/artist/
+7gKu7l0lNdzYGsdxinKkJo'}, 'href': 'https://api.spotify.com/v1/artists/7gKu7l0lNdzYGsdxinKkJo', 'id': '7gKu7l0lNdzYGsdxinKkJ
+o', 'name': 'Let It Go', 'type': 'artist', 'uri': 'spotify:artist:7gKu7l0lNdzYGsdxinKkJo'}], 'available_markets': ['AD', 'A
+R', 'AT', 'AU', 'BE', 'BG', 'BO', 'BR', 'CA', 'CH', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DE', 'DK', 'DO', 'EC', 'EE', 'ES', 'FI',
+ 'FR', 'GB', 'GR', 'GT', 'HK', 'HN', 'HU', 'ID', 'IE', 'IL', 'IS', 'IT', 'JP', 'LI', 'LT', 'LU', 'LV', 'MC', 'MT', 'MX', 'M
+Y', 'NI', 'NL', 'NO', 'NZ', 'PA', 'PE', 'PH', 'PL', 'PT', 'PY', 'RO', 'SE', 'SG', 'SK', 'SV', 'TH', 'TR', 'TW', 'US', 'UY',
+ 'VN', 'ZA'], 'disc_number': 1, 'duration_ms': 231026, 'explicit': False, 'external_ids': {'isrc': 'USVEI1274401'}, 'extern
+al_urls': {'spotify': 'https://open.spotify.com/track/6z3S1gT85O8SkYHdgAlzyK'}, 'href': 'https://api.spotify.com/v1/tracks/6z3S1gT85O8SkYHdgAlzyK', 'id': '6z3S1gT85O8SkYHdgAlzyK', 'is_local':
+False, 'name': 'Let It Go - Tribute to Demi Lovato', 'popularity': 12, 'preview_url': 'https://p.scdn.co/mp3-preview/d3e3891e5e37bdc33d1a4390315b06e4933fff81?cid=ffbf57e77cdc4d1f98b80bce63e163
+41', 'track_number': 1, 'type': 'track', 'uri': 'spotify:track:6z3S1gT85O8SkYHdgAlzyK'}, 'currently_playing_type': 'track', 'is_playing': False}

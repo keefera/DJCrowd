@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, render_template
 from twilio.twiml.messaging_response import MessagingResponse
 from threading import Timer
+from multiprocessing import Process, Value
 import requests
 
 import spotifyController
@@ -35,14 +36,10 @@ def listen():
     global REFRESHCODE
     ACCESSCODE = myRequest['token']
     REFRESHCODE = myRequest['refresh']
+    spotifyController.check(ACCESSCODE)
     
     #print(spotifyController.playSong(ACCESSCODE, 'Rick Astley', 'Never Gonna Give You Up'))
 
-    return render_template('index.html')
-
-@app.route("/help", methods = ['GET', 'POST'])
-def help():
-    print(ACCESSCODE) 
     return render_template('index.html')
 
 
@@ -76,9 +73,19 @@ def sms_reply():
     return str(resp)
 
 
+def voteLoop():
+    while(True):
+        global ACCESSCODE
+        if ACCESSCODE != "":
+            spotifyController.checkPlayback(ACCESSCODE)
+
 
 if __name__ == "__main__":
-    app.run(host='localhost', debug=False)     #run debug
+    #recording_on = Value('b', True)
+    p = Process(target=voteLoop)
+    p.start()  
+    app.run(debug=False, use_reloader=False)
+    p.join()
 
 
     #old sdk:3.7 (HelloData)
