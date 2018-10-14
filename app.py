@@ -8,7 +8,7 @@ import spotifyController
 
 DELIMITER = "::"
 
-REFRESHCODE = ""
+REFRESHCODE = "BLAH"
 ACCESSCODE = ""
 
 app = Flask(__name__)
@@ -35,7 +35,6 @@ def playVoted():
 
     return render_template('index.html', tabel_data = spotifyController.getSongs())
 
-
 @app.route("/callback", methods = ['GET', 'POST'])
 def listen():
     #r = requests.put('http://httpbin.org/put', data = {'key':'value'})
@@ -44,6 +43,9 @@ def listen():
     global REFRESHCODE
     ACCESSCODE = myRequest['token']
     REFRESHCODE = myRequest['refresh']
+    spotifyController.check(ACCESSCODE)
+    
+    #print(spotifyController.playSong(ACCESSCODE, 'Rick Astley', 'Never Gonna Give You Up'))
 
     return render_template('index.html', tabel_data = spotifyController.getSongs())
 
@@ -76,23 +78,20 @@ def sms_reply():
 
     return str(resp)
 
-'''
+
 def voteLoop():
     while(True):
         global ACCESSCODE
         if ACCESSCODE != "":
             spotifyController.checkPlayback(ACCESSCODE)
-'''
+
 
 if __name__ == "__main__":
     #recording_on = Value('b', True)
-    '''
     p = Process(target=voteLoop)
     p.start()  
     app.run(debug=False, use_reloader=False)
     p.join()
-    '''
-    app.run(debug=False)
 
 
     #old sdk:3.7 (HelloData)
