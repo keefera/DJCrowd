@@ -4,21 +4,23 @@ from twilio.twiml.messaging_response import MessagingResponse
 import spotifyController
 
 DELIMITER = "::"
-USERNAME = "akeefer6"
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods = ['GET', 'POST'])
 def index():
     return render_template('index.html')
 
 
-@app.route("/callback")
+@app.route("/callback", methods = ['GET', 'POST'])
 def listen():
-    args = request.args
-    print(args)
-    #return ""
+    #r = requests.put('http://httpbin.org/put', data = {'key':'value'})
+    myRequest = request.get_json()
+    accessCode = myRequest['token']
+    
+    print(spotifyController.playSong(accessCode, 'The Killers', 'Smile Like You Mean It'))
+
     return render_template('index.html')
 
 
