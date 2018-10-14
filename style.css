@@ -16,7 +16,7 @@ div {
     background-color: #222;
     margin-top: 150px;
     width: 300px;
-    height: 300px;
+    height: 250px;
     border-radius: 25px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
     //box-shadow: 10px 10px 5px grey;
@@ -26,7 +26,7 @@ div {
     display:inline-block;
     padding:0.35em 1.2em;
     border:0.1em solid #FFFFFF;
-    //margin:0 0.3em 0.3em 0;
+    margin-top: 20px;
     border-radius:0.12em;
     box-sizing: border-box;
     text-decoration:none;
