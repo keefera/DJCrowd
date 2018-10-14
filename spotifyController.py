@@ -50,14 +50,6 @@ def playSong(token, artistName, trackName):
 
     return "Now playing: " + artistName + " : " + trackName
 
-def check(token):
-    sp = spotipy.Spotify(auth=token)
-    results = sp.current_playback()
-    progress = results['progress_ms']
-    total = results['duration_ms']
-    print(progress)
-    print(total)
-
 
 def checkPlayback(token):
     global SONGS
@@ -80,17 +72,29 @@ def playNext(token):
         artist = artist_title_pair[0]
         title = artist_title_pair[1]
         playSong(token, artist, title)
+        return ""
+    else:
+        return "Queue is empty"
 
 def getNextSong():
     global sorted_songs
     sorted_songs = sortDictionaryByValue()
+    print(sorted_songs)
     return next(iter(sorted_songs))[0]
 
 def popKeyValue(key):
     global SONGS
     del SONGS[key]
 
-def vote(artistName, trackName):
+def vote(token, artistName, trackName):
+    #check if song is valid
+    sp = spotipy.Spotify(auth=token)
+    results = sp.search(q='artist:' + artistName + ' track:' + trackName, type='track', limit=1)
+    try:
+      trackURI = results['tracks']['items'][0]['uri']
+    except:
+      return "Error: No results found!"
+
     global SONGS
     key = "%s::%s" % (artistName.lower().strip(), trackName.lower().strip())
     dictionary_index = indexDictionary(key)
@@ -100,7 +104,9 @@ def vote(artistName, trackName):
     else:
         votes = 1
         SONGS.update ({key : votes})
+
     return "Voting for %s : %s" % (artistName, trackName)
+
 
 def indexDictionary(key):
     global SONGS
@@ -110,14 +116,14 @@ def indexDictionary(key):
 
 def sortDictionaryByValue():
     global SONGS
-    return sorted(SONGS.items(), key = lambda kv: kv[1])
+    return sorted(SONGS.items(), key = lambda kv: kv[1], reverse = True)
 
 def list_tracks():
     global SONGS
     out = ""
     for i in SONGS:
         pair = i.split("::")
-        out = out + "%s - %s\n votes: %s\n" % (pair[0], pair[1], SONGS[i])
+        out = out + "%s : %s\n Votes: %s\n" % (pair[0], pair[1], SONGS[i])
 
     return out
 
