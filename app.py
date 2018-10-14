@@ -36,13 +36,9 @@ def listen():
     global REFRESHCODE
     ACCESSCODE = myRequest['token']
     REFRESHCODE = myRequest['refresh']
-    spotifyController.check(ACCESSCODE)
-    
-    #print(spotifyController.playSong(ACCESSCODE, 'Rick Astley', 'Never Gonna Give You Up'))
 
     return render_template('index.html')
-
-
+    
 
 @app.route("/sms", methods = ['GET', 'POST'])
 def sms_reply():
