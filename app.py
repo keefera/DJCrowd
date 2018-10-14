@@ -31,33 +31,42 @@ def index():
 def listen():
     #r = requests.put('http://httpbin.org/put', data = {'key':'value'})
     myRequest = request.get_json()
+    global ACCESSCODE
+    global REFRESHCODE
     ACCESSCODE = myRequest['token']
     REFRESHCODE = myRequest['refresh']
     
-    print(spotifyController.playSong(ACCESSCODE, 'Rick Astley', 'Never Gonna Give You Up'))
+    #print(spotifyController.playSong(ACCESSCODE, 'Rick Astley', 'Never Gonna Give You Up'))
 
+    return render_template('index.html')
+
+@app.route("/help", methods = ['GET', 'POST'])
+def help():
+    print(ACCESSCODE) 
     return render_template('index.html')
 
 
 
-@app.route("/sms")
+@app.route("/sms", methods = ['GET', 'POST'])
 def sms_reply():
     """Listen for SMS Messages and plays a song based the user's selection"""
     received_message = request.values.get('Body', None)
     incoming_command = received_message.split(DELIMITER)
 
     command = incoming_command[0]
+    artist = ""
+    title = ""
     if (len(incoming_command) >= 3):
         artist = incoming_command[1]
         title = incoming_command[2]
 
 
     if (command.lower() == "play"):
-        response_string = spotifyController.playSong(USERNAME, artist, title)
+        response_string = spotifyController.playSong(ACCESSCODE, artist, title)
     elif (command.lower() == "vote"):
-        response_string = spotifyController.vote(USERNAME, artist, title)
+        response_string = spotifyController.vote(artist, title)
     elif (command.lower() == "list"):
-        response_string = spotifyController.list_tracks(USERNAME)
+        response_string = spotifyController.list_tracks()
     else:
         response_string = "Invalid Command %s" % command
 

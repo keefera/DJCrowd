@@ -55,14 +55,14 @@ def playSong(token, artistName, trackName):
 
     return "Now playing: " + trackName + " by " + artistName
 
-def playNext(username):
+def playNext(token):
     top_key = getNextSong()
     
     popKeyValue(top_key)
     artist_title_pair = top_key.split("::")
     artist = artist_title_pair[0]
     title = artist_title_pair[1]
-    playSong(username, artist, title)
+    playSong(token, artist, title)
 
 def getNextSong():
     return next(iter(sorted_songs))[0]
@@ -91,7 +91,7 @@ def indexDictionary(key):
 def sortDictionaryByValue():
     return sorted(songs.items(), key = lambda kv: kv[1])
 
-def list_tracks (username):
+def list_tracks ():
     return str(sorted_songs)
 
 if (__name__ == '__main__'):
