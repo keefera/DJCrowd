@@ -1,0 +1,7 @@
+.cache*
+spotipy-master
+blah.txt
+__pycache__*
+ngrok.exe
+Page
+*.pyc
