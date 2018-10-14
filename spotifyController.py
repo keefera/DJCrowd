@@ -26,6 +26,8 @@ SCOPE = "streaming app-remote-control user-modify-playback-state user-read-playb
 MYTOKEN = 'BQAeHoSCLjGYUzodzBkGxL5bMyWwflmdHhZ2Xn36GMNAvFDTK5L02J1pePWq7TN-AioaGRXBWnZN4cB4g6Znq4QNK-TG6R1hm9Fdw5K043zXLNAuHVXo7ChJdqJyMtYehurcwxNYL_zH2eEFbT7Eocu81gEnBpr82Bi02lBtnJG8'
 
 
+SONGS = {}
+
 def setToken(token):
     MYTOKEN = token
     return MYTOKEN
@@ -53,15 +55,44 @@ def playSong(token, artistName, trackName):
 
     return "Now playing: " + trackName + " by " + artistName
 
-#TODO implement
-def vote(username, artistName, trackName):
-    global tracks
-    tracks =[]
-    tracks.append(title)
+def playNext(username):
+    top_key = getNextSong()
+    
+    popKeyValue(top_key)
+    artist_title_pair = top_key.split("::")
+    artist = artist_title_pair[0]
+    title = artist_title_pair[1]
+    playSong(username, artist, title)
+
+def getNextSong():
+    return next(iter(sorted_songs))[0]
+
+def popKeyValue(key):
+    del SONGS[key]
+
+def vote(artistName, trackName):
+    key = "%s::%s" % (artistName.lower().strip(), trackName.lower().strip())
+    dictionary_index = indexDictionary(key)
+    if (dictionary_index):
+        votes = SONGS[key]
+        SONGS[key] = votes + 1
+    else:
+        votes = 1
+        SONGS.update ({key : votes})
+    global sorted_songs
+    sorted_songs = sortDictionaryByValue()
     return "voting for %s-%s" % (artistName, trackName)
 
+def indexDictionary(key):
+    if(key in SONGS):
+        return True
+    return False
+
+def sortDictionaryByValue():
+    return sorted(songs.items(), key = lambda kv: kv[1])
+
 def list_tracks (username):
-    return "listing"
+    return str(sorted_songs)
 
 if (__name__ == '__main__'):
     print('')
