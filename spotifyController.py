@@ -79,7 +79,6 @@ def playNext(token):
 def getNextSong():
     global sorted_songs
     sorted_songs = sortDictionaryByValue()
-    print(sorted_songs)
     return next(iter(sorted_songs))[0]
 
 def popKeyValue(key):
@@ -120,6 +119,9 @@ def sortDictionaryByValue():
 
 def list_tracks():
     global SONGS
+    if not SONGS:
+        return "Queue is Empty"
+        
     out = ""
     for i in SONGS:
         pair = i.split("::")
