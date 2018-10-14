@@ -25,7 +25,7 @@ SCOPE = "streaming app-remote-control user-modify-playback-state user-read-playb
 
 
 SONGS = {}
-sorted_songs = []
+sorted_songs = {}
 
 # Function plays song on spotify - limited to first result of query
 # pass in spotify username, artist name, and track name
@@ -64,16 +64,18 @@ def checkPlayback(token):
 '''
 
 def playNext(token):
-    top_key = getNextSong()
-    popKeyValue(top_key)
-    artist_title_pair = top_key.split("::")
-    artist = artist_title_pair[0]
-    title = artist_title_pair[1]
-    playSong(token, artist, title)
+    global SONGS
+    if SONGS:
+        top_key = getNextSong()
+        popKeyValue(top_key)
+        artist_title_pair = top_key.split("::")
+        artist = artist_title_pair[0]
+        title = artist_title_pair[1]
+        playSong(token, artist, title)
 
 def getNextSong():
     global sorted_songs
-    sorted_songs = sortDictionaryByValue
+    sorted_songs = sortDictionaryByValue()
     return next(iter(sorted_songs))[0]
 
 def popKeyValue(key):
@@ -104,12 +106,16 @@ def sortDictionaryByValue():
 
 def list_tracks():
     global SONGS
-
+    out = ""
     for i in SONGS:
         pair = i.split("::")
-        out = "%s - %s\n votes: %s" % (pair[0], pair[1], SONGS[i])
+        out = out + "%s - %s\n votes: %s\n" % (pair[0], pair[1], SONGS[i])
 
-    return str(out)
+    return out
+
+def getSongs():
+    global SONGS
+    return SONGS
 
 if (__name__ == '__main__'):
     print('')

@@ -2,87 +2,50 @@
 <html lang="en">
 
   <head>
-
-<<<<<<< HEAD
-    <meta charset="utf-8">
-||||||| merged common ancestors
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
-					</div>
-=======
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
->>>>>>> 1e0e9e9af193c9135300532adb115a96cb59d6b3
 
-<<<<<<< HEAD
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-||||||| merged common ancestors
-					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn">
-							<a href="templates/vote.html">Login</a>
-						</button>
-					</div>
-=======
-    <title>Vote Now</title>
->>>>>>> 1e0e9e9af193c9135300532adb115a96cb59d6b3
-
-<<<<<<< HEAD
-    <title>Vote Now</title>
-||||||| merged common ancestors
+    <title>Vote Now!</title>
 				</form>
 			</div>
 		</div>
 	</div>
-	
-=======
+
     <!-- Bootstrap Core CSS -->
     <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
->>>>>>> 1e0e9e9af193c9135300532adb115a96cb59d6b3
 
-<<<<<<< HEAD
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-||||||| merged common ancestors
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
-=======
     <!-- Custom Fonts -->
     <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="{{ url_for('static', filename='vendor/simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet">
->>>>>>> 1e0e9e9af193c9135300532adb115a96cb59d6b3
 
-<<<<<<< HEAD
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/animsition/js/animsition.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js') }}"></script>
+	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/daterangepicker/moment.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/countdowntime/countdowntime.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
     <!-- Custom CSS -->
-    <link href="css/stylish-portfolio.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/stylish-portfolio.min.css') }}" rel="stylesheet">
 
     <!-- DJ Crowd CSS -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" >
 
   </head>
 
@@ -92,11 +55,11 @@
     <!-- Header -->
     <header class="masthead d-flex">
       <div class="main">
-        <img src="Bare_Logo.png" width="123" height="95" class="center">
+        <img src="{{ url_for('static', filename = 'Bare_Logo.png') }}" width="123" height="95" class="center">
         <h2 class="mb-1">Text To Vote</h2>
-        <h4 class="mb-1">vote::{Artist Name}::{Song Title}</h4>
+        <h4 class="mb-1">Format:vote::{Artist Name}::{Song Title}</h4>
         <h2 class="mb-1">630-812-7643</h2>
-        <a href="/login" id="button">Play Next Song</a>
+        <a href="/playSong" id="button">Play Next Song</a>
       </div>
       <div class="overlay"></div>
       <div class="container text-center">
@@ -128,53 +91,3 @@
     </header>
   </body>
 </html>
-||||||| merged common ancestors
-</body>
-</html>
-=======
-    <!-- Custom CSS -->
-    <link href="{{ url_for('static', filename='css/stylish-portfolio.min.css') }}" rel="stylesheet">
-
-  </head>
-
-  <body id="page-top">
-
-
-    <!-- Header -->
-    <header class="masthead d-flex">
-      <div class="container text-center my-auto">
-        <h2 class="mb-1">Text To Vote</h2>
-        <h4 class="mb-1">Song Name::Artist Name</h4>
-        <h2 class="mb-1">630-812-7643</h2>
-      </div>
-      <div class="overlay"></div>
-      <div class="container text-center">
-        <div class="row">
-          <div class="col-lg-10 mx-auto">
-            <table class="table table-striped table-dark table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Artist</th>
-                  <th scope="col">Song Name</th>
-                  <th scope="col"># Votes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for row in table_data %}
-                <tr>
-                   <th scope="row">{{table_data.index(row) + 1}} 
-                  <td>{{row[0]}}</td>
-                  <td>{{row[1]}}</td>
-                  <td>{{row[2]}}</td>
-                <tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </header>
-  </body>
-</html>
->>>>>>> 1e0e9e9af193c9135300532adb115a96cb59d6b3

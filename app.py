@@ -33,7 +33,7 @@ def playVoted():
     if ACCESSCODE != "":
         spotifyController.playNext(ACCESSCODE)
 
-    return render_template('index.html')
+    return render_template('index.html', tabel_data = spotifyController.getSongs())
 
 
 @app.route("/callback", methods = ['GET', 'POST'])
@@ -45,7 +45,7 @@ def listen():
     ACCESSCODE = myRequest['token']
     REFRESHCODE = myRequest['refresh']
 
-    return render_template('static/index.html')
+    return render_template('index.html', tabel_data = spotifyController.getSongs())
 
 
 @app.route("/sms", methods = ['GET', 'POST'])
