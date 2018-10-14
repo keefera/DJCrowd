@@ -5,7 +5,7 @@ import operator
 
 app=Flask(__name__)
 
-@app.route("/update_table/<data>")
+@app.route("/")
 def update_table(data):
     #test data
     '''
