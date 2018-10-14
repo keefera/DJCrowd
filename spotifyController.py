@@ -50,15 +50,7 @@ def playSong(token, artistName, trackName):
 
     return "Now playing: " + artistName + " : " + trackName
 
-def check(token):
-    sp = spotipy.Spotify(auth=token)
-    results = sp.current_playback()
-    progress = results['progress_ms']
-    total = results['duration_ms']
-    print(progress)
-    print(total)
-
-
+'''
 def checkPlayback(token):
     global SONGS
     if SONGS:
@@ -69,7 +61,7 @@ def checkPlayback(token):
         print(total - progress)
         if total - progress <= 10000:
             playNext(token)
-
+'''
 
 def playNext(token):
     top_key = getNextSong()
